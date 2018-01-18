@@ -65,7 +65,6 @@
 					</Breadcrumb>
 					<Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
 						<router-view/>
-						<h2>	我的书桌的温度</h2>
 						<g2-line :charData="serverData" :id="'c1'" id="c1"></g2-line>
 					</Content>
 				</Layout>
@@ -102,6 +101,7 @@
 						_self.$Message.error(res.msg);
 					} else {
 						_self.$Message.success(res.message);
+						/*
 						let ge = parseInt(res.data.data.length / 10);
 						for(var i = 0; i < res.data.data.length; i++) {
 							res.data.data[i]['strftime'] = (res.data.data[i]['datetime']);
@@ -115,7 +115,8 @@
 						}
 						tempArr.pop();
 						tempArr.push(res.data.data[res.data.data.length - 1]);
-						_self.serverData = tempArr;
+						*/
+						_self.serverData = res.data.data;
 					}
 				});
 			},
