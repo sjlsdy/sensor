@@ -16,7 +16,7 @@
 			},
 			width: {
 				type: String,
-				default: '90%'
+				default: '100%'
 			},
 			height: {
 				type: String,
@@ -104,7 +104,13 @@
 						type: 'value',
 						axisLabel: {
 							formatter: '{value} °C'
-						}
+						},
+						min: function(value) {
+							return Math.floor(value.min);
+						},
+						max: function(value) {
+							return Math.ceil(value.max);
+						},
 					}],
 					series: [{
 						name: '温度计',
@@ -121,12 +127,6 @@
 								}
 							]
 						},
-						markLine: {
-							data: [{
-								type: 'average',
-								name: '平均值'
-							}]
-						}
 					}]
 				})
 			}

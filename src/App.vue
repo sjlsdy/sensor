@@ -65,7 +65,6 @@
 					</Breadcrumb>
 					<Content :style="{padding: '24px', minHeight: '280px', background: '#fff'}">
 						<router-view/>
-						<g2-line :charData="serverData" :id="'c1'" id="c1"></g2-line>
 					</Content>
 				</Layout>
 			</Layout>
@@ -74,54 +73,6 @@
 </template>
 
 <script>
-	import { fetchPostUrlencoded, fetchGet, fetchGetHaveParam } from './utils/requestHttp.js'
-	import { getLocalTime } from './utils/common.js'
-
-	import G2Line from './components/G2Line.vue';
-	export default {
-		components: {
-			G2Line
-		},
-		data() {
-			return {
-				serverData: [],
-			}
-		},
-		created() {
-			this.saveService('10000');
-		},
-		methods: {
-			saveService(id) {
-				let _self = this;
-				let tempArr = [];
-				fetchPostUrlencoded('/www/?m=api&c=api&a=datasteamlist', {
-					id: id,
-				}).then((res) => {
-					if(res.status !== 0) {
-						_self.$Message.error(res.msg);
-					} else {
-						_self.$Message.success(res.message);
-						/*
-						let ge = parseInt(res.data.data.length / 10);
-						for(var i = 0; i < res.data.data.length; i++) {
-							res.data.data[i]['strftime'] = (res.data.data[i]['datetime']);
-							res.data.data[i]['value'] = res.data.data[i]['data'];
-						}
-						//_self.serverData = res.data.data;
-						for(let i = 0; i < res.data.data.length; i++) {
-							if(i % ge == 0) {
-								tempArr.push(res.data.data[i]);
-							}
-						}
-						tempArr.pop();
-						tempArr.push(res.data.data[res.data.data.length - 1]);
-						*/
-						_self.serverData = res.data.data;
-					}
-				});
-			},
-		}
-	}
 </script>
 
 <style scoped>
